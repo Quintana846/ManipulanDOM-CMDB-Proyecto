@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CMDB - Géneros</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="generos.html">Géneros</a>
+        <a href="peliculas.html">Películas</a>
+        <a href="listado.html">Listado</a>
+    </nav>
+
+    <div class="contenedor">
+        <h2>Gestión de Géneros</h2>
+        
+        <form id="form-genero">
+            <div class="form-group">
+                <label for="nombreGenero">Nombre del Género:</label>
+                <input type="text" id="nombreGenero" required maxlength="100" placeholder="Ej: Terror">
+            </div>
+            <button type="submit">Añadir Género</button>
+        </form>
+
+        <h3>Géneros Existentes</h3>
+        <table id="tabla-generos">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+
+    <script type="module" src="js/eventos/appGeneros.js"></script>
+</body>
+</html>
