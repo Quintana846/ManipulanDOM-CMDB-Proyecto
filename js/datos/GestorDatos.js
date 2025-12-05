@@ -36,9 +36,14 @@ export const GestorDatos = {
     // --- MÉTODOS DE GÉNEROS ---
 
     obtenerGeneros() {
-        const json = localStorage.getItem(this.KEY_GENEROS);
-        if (!json) return [];
-        return JSON.parse(json).map(g => new Genero(g.id, g.nombre));
+        try {
+            const json = localStorage.getItem(this.KEY_GENEROS);
+            return json ? JSON.parse(json).map(g => new Genero(g.id, g.nombre)) : [];
+        } catch (e) {
+            console.error("Error datos géneros, reiniciando...", e);
+            localStorage.removeItem(this.KEY_GENEROS);
+            return [];
+        }
     },
 
     guardarGeneros(lista) {
@@ -82,11 +87,14 @@ export const GestorDatos = {
     // --- MÉTODOS DE PELÍCULAS ---
 
     obtenerPeliculas() {
-        const json = localStorage.getItem(this.KEY_PELICULAS);
-        if (!json) return [];
-        return JSON.parse(json).map(p => 
-            new Pelicula(p.id, p.titulo, p.fechaEstreno, p.popularidad, p.puntuaciones, p.generos)
-        );
+        try {
+            const json = localStorage.getItem(this.KEY_PELICULAS);
+            return json ? JSON.parse(json).map(p => new Pelicula(p.id, p.titulo, p.fechaEstreno, p.popularidad, p.puntuaciones, p.generos)) : [];
+        } catch (e) {
+            console.error("Error datos películas, reiniciando...", e);
+            localStorage.removeItem(this.KEY_PELICULAS);
+            return [];
+        }
     },
 
     guardarPeliculas(lista) {
@@ -103,14 +111,8 @@ export const GestorDatos = {
 
     crearPelicula(titulo, fecha, popularidad, generosIds) {
         const lista = this.obtenerPeliculas();
-        const nueva = new Pelicula(
-            this.nuevoIdPelicula(),
-            titulo,
-            fecha,
-            popularidad,
-            [], // Puntuaciones vacías al inicio
-            generosIds
-        );
+        const maxId = lista.reduce((max, p) => Math.max(max, p.id), 0);
+        const nueva = new Pelicula(maxId + 1, titulo, fecha, popularidad, [], generosIds);
         lista.push(nueva);
         this.guardarPeliculas(lista);
     },
