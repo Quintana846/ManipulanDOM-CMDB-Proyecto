@@ -3,20 +3,28 @@ body {
     margin: 20px; 
     background-color: #f4f4f4; 
 }
+
 nav { 
+    display: flex;
     background: #333; 
     padding: 10px; 
     margin-bottom: 20px; 
     border-radius: 5px; 
+    align-items: center;
 }
+
 nav a { 
     color: #fff; 
     text-decoration: none; 
     margin-right: 15px; 
-    font-weight: bold; }
+    font-weight: bold; 
+    margin-left: 15px;
+}
+
 nav a:hover { 
     color: #ffd700; 
 }
+
 .contenedor { 
     background: #fff; 
     padding: 20px; 
@@ -24,34 +32,42 @@ nav a:hover {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
     max-width: 900px; 
     margin: 0 auto; }
+
 form { 
     background: #e9ecef; 
     padding: 15px; 
     border-radius: 5px; 
     margin-bottom: 20px; }
+
 .form-group { 
     margin-bottom: 10px; 
 }
+
 label { 
     display: block; 
     font-weight: bold; 
     margin-bottom: 5px; 
 }
+
 input[type="text"], input[type="date"], input[type="number"] { width: 100%; padding: 8px; box-sizing: border-box; }
+
 table { 
     width: 100%; 
     border-collapse: collapse; 
     margin-top: 10px; 
 }
+
 th, td { 
     border: 1px solid #ddd; 
     padding: 10px; 
     text-align: left; 
 }
+
 th { 
     background-color: #2c3e50; 
     color: white; 
 }
+
 button { 
     background: #27ae60; 
     color: white; 
@@ -60,9 +76,28 @@ button {
     cursor: pointer;
      border-radius: 4px;
      }
+
 button:hover { 
     background: #219150; 
 }
+
 button.eliminar {
      background: #c0392b;
      }
+
+section{
+    margin: 20px;
+}
+
+.layout{
+    width: min(1000px, 100%);
+    margin: 0 auto;
+    columns: 3 300px;
+    column-gap: 1em;
+}
+
+.layout img{
+    display: block;
+    margin-bottom: 1em;
+    width: 100%;
+}
