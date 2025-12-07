@@ -16,8 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Recoger géneros seleccionados 
 
-        const checkboxes = document.querySelectorAll('input[name="genero"]:checked');
-        const generosIds = Array.from(checkboxes).map(cb => parseInt(cb.value));
+        const checkboxes = document.querySelectorAll('input[name="genero"]:checked'); //recoge los valores donde el check está activado
+        const generosIds = Array.from(checkboxes).map(check => parseInt(check.value));
+
+        // otra manera seria: 
+        // const generosIds = [].map.call(checkboxes, function (check){ return check.value});
 
         // --- VALIDACIONES DEL ENUNCIADO ---
 
