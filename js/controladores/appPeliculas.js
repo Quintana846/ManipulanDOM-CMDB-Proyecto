@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     pintarTabla();
 
     // Validar y Crear Película
+
     document.getElementById('form-pelicula').addEventListener('submit', (e) => {
         e.preventDefault();
         
@@ -13,11 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const fecha = document.getElementById('fecha').value;
         const popularidad = parseFloat(document.getElementById('popularidad').value);
         
-        // Recoger géneros seleccionados (Unidad 4 - querySelectorAll)
+        // Recoger géneros seleccionados 
+
         const checkboxes = document.querySelectorAll('input[name="genero"]:checked');
         const generosIds = Array.from(checkboxes).map(cb => parseInt(cb.value));
 
-        // --- VALIDACIONES DEL ENUNCIADO [cite: 54, 55, 56] ---
+        // --- VALIDACIONES DEL ENUNCIADO ---
+
         const fechaObj = new Date(fecha);
         const fechaMinima = new Date("1900-01-01");
         const fechaHoy = new Date();
@@ -33,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (generosIds.length === 0) {
-            errores.push("Debes seleccionar al menos un género."); // [cite: 56]
+            errores.push("Debes seleccionar al menos un género.");
         }
 
         if (errores.length > 0) {
@@ -41,10 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Si todo ok
         GestorDatos.crearPelicula(titulo, fecha, popularidad, generosIds);
         pintarTabla();
-        e.target.reset(); // Limpiar form
+        e.target.reset(); 
         alert("Película creada.");
     });
 });
@@ -72,7 +74,9 @@ function pintarTabla() {
     const generosRef = GestorDatos.obtenerGeneros();
 
     peliculas.forEach(p => {
+
         // Mapear IDs de géneros a Nombres
+        
         const nombresGeneros = p.generos.map(id => {
             const g = generosRef.find(gen => gen.id === id);
             return g ? g.nombre : 'Desconocido';

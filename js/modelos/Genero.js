@@ -1,6 +1,5 @@
 /**
  * Clase que representa un Género de película.
- * Cumple con los requisitos de la Unidad 3 sobre Clases y JSDoc.
  */
 export class Genero {
     /**
@@ -16,13 +15,17 @@ export class Genero {
      * Obtiene el ID del género.
      * @returns {number}
      */
-    get id() { return this._id; }
+    get id() { 
+        return this._id; 
+    }
 
     /**
      * Obtiene el nombre del género.
      * @returns {string}
      */
-    get nombre() { return this._nombre; }
+    get nombre() { 
+        return this._nombre; 
+    }
 
     /**
      * Establece el nombre del género.
@@ -40,6 +43,9 @@ export class Genero {
      * Convierte el objeto a un formato JSON simple para almacenamiento.
      */
     toJSON() {
-        return { id: this._id, nombre: this._nombre };
+        return { 
+            id: this._id, 
+            nombre: this._nombre 
+        };
     }
 }

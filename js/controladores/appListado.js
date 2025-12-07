@@ -19,7 +19,7 @@ function renderizarListado() {
         }).join(', ');
 
         const tr = document.createElement('tr');
-        // Mostrar media en tiempo real [cite: 35]
+        // Mostrar media en tiempo real 
         tr.innerHTML = `
             <td>${p.titulo}</td>
             <td>${p.fechaEstreno}</td>
@@ -34,7 +34,7 @@ function renderizarListado() {
         tbody.appendChild(tr);
     });
 
-    // Evento Votar [cite: 63]
+    // Evento Votar 
     document.querySelectorAll('.btn-votar').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const id = parseInt(e.target.dataset.id);

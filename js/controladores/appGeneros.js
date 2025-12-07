@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function pintarTabla() {
-    const tbody = document.querySelector('#tabla-generos tbody');
-    tbody.innerHTML = ''; // Limpiar (Unidad 4)
+    const tabla = document.querySelector('#tabla-generos tbody');
+    tabla.innerHTML = '';
 
     const generos = GestorDatos.obtenerGeneros();
 
@@ -38,10 +38,9 @@ function pintarTabla() {
                 <button class="eliminar" data-id="${g.id}">Eliminar</button>
             </td>
         `;
-        tbody.appendChild(tr);
+        tabla.appendChild(tr);
     });
 
-    // Delegación de eventos para botones eliminar (Unidad 4.3.3)
     const botonesEliminar = document.querySelectorAll('.eliminar');
     botonesEliminar.forEach(btn => {
         btn.addEventListener('click', (e) => {

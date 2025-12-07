@@ -6,30 +6,30 @@ import { Pelicula } from '../modelos/Pelicula.js';
  * Cumple requisito 4.4 de Persistencia.
  */
 export const GestorDatos = {
-    KEY_GENEROS: 'cmdb_generos',
-    KEY_PELICULAS: 'cmdb_peliculas',
+    localGeneros: 'cmdb_generos',
+    localPelis: 'cmdb_peliculas',
 
     /**
      * Carga inicial de datos si no existen (5 pelis, 2 generos).
      */
     inicializar() {
-        if (!localStorage.getItem(this.KEY_GENEROS)) {
-            const generosInit = [
+        if (!localStorage.getItem(this.localGeneros)) {
+            const generosCreados = [
                 new Genero(1, "Ciencia Ficción"),
                 new Genero(2, "Drama")
             ];
-            this.guardarGeneros(generosInit);
+            this.guardarGeneros(generosCreados);
         }
 
-        if (!localStorage.getItem(this.KEY_PELICULAS)) {
-            const pelisInit = [
+        if (!localStorage.getItem(this.localPelis)) {
+            const pelisCreadas = [
                 new Pelicula(1, "Blade Runner", "1982-06-25", 90, [10, 9], [1]),
                 new Pelicula(2, "El Padrino", "1972-03-14", 95, [10, 10, 9], [2]),
                 new Pelicula(3, "Matrix", "1999-03-31", 88, [8, 9], [1]),
                 new Pelicula(4, "Interstellar", "2014-11-07", 92, [9, 10], [1, 2]),
                 new Pelicula(5, "Cadena Perpetua", "1994-09-23", 93, [10], [2])
             ];
-            this.guardarPeliculas(pelisInit);
+            this.guardarPeliculas(pelisCreadas);
         }
     },
 
@@ -37,22 +37,22 @@ export const GestorDatos = {
 
     obtenerGeneros() {
         try {
-            const json = localStorage.getItem(this.KEY_GENEROS);
+            const json = localStorage.getItem(this.localGeneros);
             return json ? JSON.parse(json).map(g => new Genero(g.id, g.nombre)) : [];
         } catch (e) {
             console.error("Error datos géneros, reiniciando...", e);
-            localStorage.removeItem(this.KEY_GENEROS);
+            localStorage.removeItem(this.localGeneros);
             return [];
         }
     },
 
     guardarGeneros(lista) {
         const json = lista.map(g => g.toJSON());
-        localStorage.setItem(this.KEY_GENEROS, JSON.stringify(json));
+        localStorage.setItem(this.localGeneros, JSON.stringify(json));
     },
 
     /**
-     * Obtiene el último ID y suma 1[cite: 22].
+     * Obtiene el último ID y suma 1
      */
     nuevoIdGenero() {
         const generos = this.obtenerGeneros();
@@ -69,7 +69,7 @@ export const GestorDatos = {
     },
 
     /**
-     * Elimina género comprobando integridad referencial[cite: 47].
+     * Elimina género comprobando integridad referencial.
      */
     eliminarGenero(id) {
         const peliculas = this.obtenerPeliculas();
@@ -88,18 +88,18 @@ export const GestorDatos = {
 
     obtenerPeliculas() {
         try {
-            const json = localStorage.getItem(this.KEY_PELICULAS);
+            const json = localStorage.getItem(this.localPelis);
             return json ? JSON.parse(json).map(p => new Pelicula(p.id, p.titulo, p.fechaEstreno, p.popularidad, p.puntuaciones, p.generos)) : [];
         } catch (e) {
             console.error("Error datos películas, reiniciando...", e);
-            localStorage.removeItem(this.KEY_PELICULAS);
+            localStorage.removeItem(this.localPelis);
             return [];
         }
     },
 
     guardarPeliculas(lista) {
         const json = lista.map(p => p.toJSON());
-        localStorage.setItem(this.KEY_PELICULAS, JSON.stringify(json));
+        localStorage.setItem(this.localPelis, JSON.stringify(json));
     },
 
     nuevoIdPelicula() {
